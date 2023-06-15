@@ -10,7 +10,12 @@ function SignUp() {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault()
+        if (fname === '' || lname === '' || email === '' || password === '') {
+            alert('Please fill in all fields');
+            return;
+          }
         const userData = {
             fname: fname,
             lname: lname,
@@ -34,11 +39,13 @@ function SignUp() {
         <>
             <div className='signupcont'>
                 <h1>SignUp Here</h1>
-                <input type='text' placeholder='FirstName' value={fname} onChange={(e) => setFname(e.target.value)} />
-                <input type='text' placeholder='LastName' value={lname} onChange={(e) => setLname(e.target.value)} />
-                <input type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type='password' placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button onClick={handleSubmit}>Signup</button>
+                <form onSubmit={handleSubmit}>
+          <input type='text' placeholder='FirstName' value={fname} onChange={(e) => setFname(e.target.value)} required />
+          <input type='text' placeholder='LastName' value={lname} onChange={(e) => setLname(e.target.value)} required />
+          <input type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type='password' placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button type='submit'>Signup</button>
+        </form>
             </div>
         </>
     )
