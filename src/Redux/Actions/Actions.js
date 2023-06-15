@@ -35,3 +35,11 @@ export const LoginFailure = (err) => {
     })
    }
 }
+export const Logout = (userData)=>{
+    return (dispatch)=>{
+        dispatch({
+            type:'LOGOUT',
+            payload:userData,
+        })
+    }
+}
